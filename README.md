@@ -1,7 +1,5 @@
 ## Laravel 5 - Saml2
 
-[![Build Status](https://travis-ci.org/aacotroneo/laravel-saml2.svg)](https://travis-ci.org/aacotroneo/laravel-saml2)
-
 A Laravel package for Saml2 integration as a SP (service provider) based on  [OneLogin](https://github.com/onelogin/php-saml) toolkit, which is much lighter and easier to install than simplesamlphp SP. It doesn't need separate routes or session storage to work!
 
 The aim of this library is to be as simple as possible. We won't mess with Laravel users, auth, session...  We prefer to limit ourselves to a concrete task. Ask the user to authenticate at the IDP and process the response. Same case for SLO requests.
@@ -12,7 +10,7 @@ The aim of this library is to be as simple as possible. We won't mess with Larav
 You can install the package via composer:
 
 ```
-composer require aacotroneo/laravel-saml2
+composer require clevyr/laravel-saml2
 ```
 
 If you are using Laravel 5.5 and up, the service provider will automatically get registered.
@@ -22,16 +20,16 @@ For older versions of Laravel (<5.5), you have to add the service provider and a
 ```php
 'providers' => [
         ...
-    	Aacotroneo\Saml2\Saml2ServiceProvider::class,
+    	Clevyr\Saml2\Saml2ServiceProvider::class,
 ]
 
 'alias' => [
         ...
-        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
+        'Saml2' => Clevyr\Saml2\Facades\Saml2Auth::class,
 ]
 ```
 
-Then publish the config file with `php artisan vendor:publish --provider="Aacotroneo\Saml2\Saml2ServiceProvider"`. This will add the file `app/config/saml2_settings.php`. This config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty straightforward.
+Then publish the config file with `php artisan vendor:publish --provider="Clevyr\Saml2\Saml2ServiceProvider"`. This will add the file `app/config/saml2_settings.php`. This config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty straightforward.
 
 ### Configuration
 
@@ -91,7 +89,7 @@ The Saml2::login will redirect the user to the IDP and will came back to an endp
 
 ```php
 
- Event::listen('Aacotroneo\Saml2\Events\Saml2LoginEvent', function (Saml2LoginEvent $event) {
+ Event::listen('Clevyr\Saml2\Events\Saml2LoginEvent', function (Saml2LoginEvent $event) {
             $messageId = $event->getSaml2Auth()->getLastMessageId();
             // your own code preventing reuse of a $messageId to stop replay attacks
             $user = $event->getSaml2User();
@@ -150,7 +148,7 @@ For case 2 you will only receive the event. Both cases 1 and 2 receive the same 
 Note that for case 2, you may have to manually save your session to make the logout stick (as the session is saved by middleware, but the OneLogin library will redirect back to your IDP before that happens)
 
 ```php
-        Event::listen('Aacotroneo\Saml2\Events\Saml2LogoutEvent', function ($event) {
+        Event::listen('Clevyr\Saml2\Events\Saml2LogoutEvent', function ($event) {
             Auth::logout();
             Session::save();
         });

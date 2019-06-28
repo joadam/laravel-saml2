@@ -1,5 +1,5 @@
 <?php
-namespace Aacotroneo\Saml2;
+namespace Clevyr\Saml2;
 
 use OneLogin\Saml2\Auth as OneLogin_Saml2_Auth;
 use OneLogin\Saml2\Utils as OneLogin_Saml2_Utils;
@@ -45,9 +45,9 @@ class Saml2ServiceProvider extends ServiceProvider
     {
         $this->registerOneLoginInContainer();
 
-        $this->app->singleton('Aacotroneo\Saml2\Saml2Auth', function ($app) {
+        $this->app->singleton('Clevyr\Saml2\Saml2Auth', function ($app) {
 
-            return new \Aacotroneo\Saml2\Saml2Auth($app['OneLogin_Saml2_Auth']);
+            return new \Clevyr\Saml2\Saml2Auth($app['OneLogin_Saml2_Auth']);
         });
 
     }

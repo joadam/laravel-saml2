@@ -1,9 +1,9 @@
 <?php
 
-namespace Aacotroneo\Saml2\Events;
+namespace Clevyr\Saml2\Events;
 
-use Aacotroneo\Saml2\Saml2User;
-use Aacotroneo\Saml2\Saml2Auth;
+use Clevyr\Saml2\Saml2User;
+use Clevyr\Saml2\Saml2Auth;
 
 class Saml2LoginEvent {
 

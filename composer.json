@@ -1,14 +1,18 @@
 {
-    "name": "aacotroneo/laravel-saml2",
+    "name": "clevyr/laravel-saml2",
     "description": "A Laravel package for Saml2 integration as a SP (service provider) based on OneLogin toolkit, which is much lightweight than simplesamlphp",
     "keywords": ["laravel","saml", "saml2", "onelogin"],
-    "homepage": "https://github.com/aacotroneo/laravel-saml2",
+    "homepage": "https://github.com/clevyr/laravel-saml2",
     "license": "MIT",
     "version": "1.0.0",
     "authors": [
         {
             "name": "aacotroneo",
             "email": "aacotroneo@gmail.com"
+        },
+        {
+            "name": "Clevyr",
+            "email": "support@clevyr.com"
         }
     ],
     "require": {
@@ -22,16 +26,16 @@
     },
     "autoload": {
         "psr-0": {
-            "Aacotroneo\\Saml2\\": "src/"
+            "Clevyr\\Saml2\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Aacotroneo\\Saml2\\Saml2ServiceProvider"
+                "Clevyr\\Saml2\\Saml2ServiceProvider"
             ],
             "aliases": {
-                "Saml2": "Aacotroneo\\Saml2\\Facades\\Saml2Auth"
+                "Saml2": "Clevyr\\Saml2\\Facades\\Saml2Auth"
             }
         }
     },
