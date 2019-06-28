@@ -53,33 +53,33 @@ class Saml2AuthTest extends TestCase
     }
 
 
-    public function testAcsError()
+    public function testConsumeError()
     {
         $auth = m::mock('OneLogin\Saml2\Auth');
         $saml2 = new Saml2Auth($auth);
         $auth->shouldReceive('processResponse')->once();
         $auth->shouldReceive('getErrors')->once()->andReturn(array('errors'));
 
-        $error = $saml2->acs();
+        $error = $saml2->consume();
 
         $this->assertNotEmpty($error);
     }
 
 
-    public function testAcsNotAutenticated()
+    public function testConsumeNotAutenticated()
     {
         $auth = m::mock('OneLogin\Saml2\Auth');
         $saml2 = new Saml2Auth($auth);
         $auth->shouldReceive('processResponse')->once();
         $auth->shouldReceive('getErrors')->once()->andReturn(null);
         $auth->shouldReceive('isAuthenticated')->once()->andReturn(false);
-        $error =  $saml2->acs();
+        $error =  $saml2->consume();
 
         $this->assertNotEmpty($error);
     }
 
 
-    public function testAcsOK()
+    public function testConsumeOK()
     {
         $auth = m::mock('OneLogin\Saml2\Auth');
         $saml2 = new Saml2Auth($auth);
@@ -87,7 +87,7 @@ class Saml2AuthTest extends TestCase
         $auth->shouldReceive('getErrors')->once()->andReturn(null);
         $auth->shouldReceive('isAuthenticated')->once()->andReturn(true);
 
-        $error =  $saml2->acs();
+        $error =  $saml2->consume();
 
         $this->assertEmpty($error);
     }

@@ -10,7 +10,7 @@ return $settings = array(
      *
      *    Method | URI                      | Name
      *    -------|--------------------------|------------------
-     *    POST   | {routesPrefix}/acs       | saml_acs
+     *    POST   | {routesPrefix}/consume   | saml_consume
      *    GET    | {routesPrefix}/login     | saml_login
      *    GET    | {routesPrefix}/logout    | saml_logout
      *    GET    | {routesPrefix}/metadata  | saml_metadata
@@ -94,7 +94,7 @@ return $settings = array(
         'assertionConsumerService' => array(
             // URL Location where the <Response> from the IdP will be returned,
             // using HTTP-POST binding.
-            // Leave blank to use the 'saml_acs' route
+            // Leave blank to use the 'saml_consume' route
             'url' => '',
         ),
         // Specifies info about where and how the <Logout Response> message MUST be

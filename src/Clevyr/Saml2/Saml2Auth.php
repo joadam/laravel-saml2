@@ -99,7 +99,7 @@ class Saml2Auth
      * Process a Saml response (assertion consumer service)
      * When errors are encountered, it returns an array with proper description
      */
-    function acs()
+    function consume()
     {
 
         /** @var $auth OneLogin_Saml2_Auth */

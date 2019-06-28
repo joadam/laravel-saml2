@@ -38,9 +38,9 @@ class Saml2Controller extends Controller
      * Process an incoming saml2 assertion request.
      * Fires 'Saml2LoginEvent' event if a valid user is Found
      */
-    public function acs()
+    public function consume()
     {
-        $errors = $this->saml2Auth->acs();
+        $errors = $this->saml2Auth->consume();
 
         if (!empty($errors)) {
             logger()->error('Saml2 error_detail', ['error' => $this->saml2Auth->getLastErrorReason()]);

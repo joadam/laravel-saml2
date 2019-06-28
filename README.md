@@ -33,13 +33,13 @@ Then publish the config file with `php artisan vendor:publish --provider="Clevyr
 
 ### Configuration
 
-Once you publish your saml2_settings.php to your own files, you need to configure your sp and IDP (remote server). The only real difference between this config and the one that OneLogin uses, is that the SP entityId, assertionConsumerService url and singleLogoutService URL are injected by the library. They are taken from routes 'saml_metadata', 'saml_acs' and 'saml_sls' respectively.
+Once you publish your saml2_settings.php to your own files, you need to configure your sp and IDP (remote server). The only real difference between this config and the one that OneLogin uses, is that the SP entityId, assertionConsumerService url and singleLogoutService URL are injected by the library. They are taken from routes 'saml_metadata', 'saml_consume' and 'saml_sls' respectively.
 
 Remember that you don't need to implement those routes, but you'll need to add them to your IDP configuration. For example, if you use simplesamlphp, add the following to /metadata/sp-remote.php
 
 ```php
 $metadata['http://laravel_url/saml2/metadata'] = array(
-    'AssertionConsumerService' => 'http://laravel_url/saml2/acs',
+    'AssertionConsumerService' => 'http://laravel_url/saml2/consume',
     'SingleLogoutService' => 'http://laravel_url/saml2/sls',
     //the following two affect what the $Saml2user->getUserId() will return
     'NameIDFormat' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
@@ -85,7 +85,7 @@ protected function unauthenticated($request, AuthenticationException $exception)
 }
 ```
 
-The Saml2::login will redirect the user to the IDP and will came back to an endpoint the library serves at /saml2/acs. That will process the response and fire an event when ready. The next step for you is to handle that event. You just need to login the user or refuse.
+The Saml2::login will redirect the user to the IDP and will came back to an endpoint the library serves at /saml2/consume. That will process the response and fire an event when ready. The next step for you is to handle that event. You just need to login the user or refuse.
 
 ```php
 

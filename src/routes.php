@@ -21,9 +21,9 @@ Route::group([
         'uses' => 'Clevyr\Saml2\Http\Controllers\Saml2Controller@metadata',
     ));
 
-    Route::post('/acs', array(
-        'as' => 'saml_acs',
-        'uses' => 'Clevyr\Saml2\Http\Controllers\Saml2Controller@acs',
+    Route::post('/consume', array(
+        'as' => 'saml_consume',
+        'uses' => 'Clevyr\Saml2\Http\Controllers\Saml2Controller@consume',
     ));
 
     Route::get('/sls', array(
